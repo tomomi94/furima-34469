@@ -30,7 +30,7 @@
 | estimated_shipping_id | integer | null: false                    |
 | shipping_area_id      | integer | null: false                    |
 | shipping_fee_id       | integer | null: false                    |
-| user_id               | string  | null: false, foreign_key: true |
+| user_id               | integer  | null: false, foreign_key: true |
 
 ### Association
 
@@ -39,26 +39,27 @@
 
 ## purchases テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :shipping_addresses
+- has_one :shipping_address
 
 ## shipping_addresses テーブル
 
-| Column           | Type    | Options     |
-| ---------------- | ------- | ----------- |
-| post_code        | string  | null: false |
-| shipping_area_id | integer | null: false |
-| municipality     | string  | null: false |
-| address          | integer | null: false |
-| building_name    | string  |             |
-| phone_number     | string  | null: false |
+| Column           | Type       | Options                         |
+| ---------------- | ---------- | ------------------------------- |
+| post_code        | string     | null: false                     |
+| shipping_area_id | integer    | null: false                     |
+| municipality     | string     | null: false                     |
+| address          | integer    | null: false                     |
+| building_name    | string     |                                 |
+| phone_number     | string     | null: false                     |
+| purchases        | references | null: false, foreign_key: true  |
 
 ### Association
 
