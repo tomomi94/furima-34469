@@ -16,21 +16,21 @@
 ### Association
 
 - has_many :items
-- has_many :shipping_addresses
+- has_many :purchase
 
 ## Items テーブル
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| iteme_name            | string     | null: false                    |
-| iteme_content         | text       | null: false                    |
-| iteme_category_id     | integer    | null: false                    |
+| name                  | string     | null: false                    |
+| content               | text       | null: false                    |
+| category_id           | integer    | null: false                    |
 | product_condition_id  | integer    | null: false                    |
 | price                 | integer    | null: false                    |
 | estimated_shipping_id | integer    | null: false                    |
 | shipping_area_id      | integer    | null: false                    |
 | shipping_fee_id       | integer    | null: false                    |
-| user_id               | references | null: false, foreign_key: true |
+| user                  | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -60,7 +60,7 @@
 | address          | string     | null: false                     |
 | building_name    | string     |                                 |
 | phone_number     | string     | null: false                     |
-| purchases        | references | null: false, foreign_key: true  |
+| purchase        | references | null: false, foreign_key: true  |
 
 ### Association
 
