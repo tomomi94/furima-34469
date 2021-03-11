@@ -6,7 +6,10 @@ const salesProfit = document.getElementById("profit")
 
 priceInput.addEventListener("input", () => {
   const inputValue = priceInput.value;
-  console.log(inputValue);
+  const value_result = Math.floor(inputValue * 0.1);
+  salesCommission.innerHTML = value_result
+  const result = Math.floor(inputValue * 0.9);
+  salesProfit.innerHTML = result
 })
 
 });
