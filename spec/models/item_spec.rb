@@ -27,38 +27,78 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+      it 'category_idが1の場合登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
       it 'product_condition_idが空では登録できない' do
         @item.product_condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Product condition can't be blank")
+      end
+      it 'product_condition_idが1の場合登録できない' do
+        @item.product_condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Product condition must be other than 1")
       end
       it 'estimated_shipping_idが空では登録できない' do
         @item.estimated_shipping_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Estimated shipping can't be blank")
       end
+      it 'estimated_shipping_idが1の場合登録できない' do
+        @item.estimated_shipping_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Estimated shipping must be other than 1")
+      end
       it 'shipping_area_idが空では登録できない' do
         @item.shipping_area_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping area can't be blank")
+      end
+      it 'shipping_area_idが1の場合登録できない' do
+        @item.shipping_area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
       end
       it 'shipping_fee_idが空では登録できない' do
         @item.shipping_fee_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
       end
+      it 'shipping_fee_idが1の場合登録できない' do
+        @item.shipping_fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
+      end
       it 'priceが空では登録できない' do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it 'priceが半角数字ではない場合登録できない' do
+      it 'priceが全角数字の場合登録できない' do
         @item.price = '５０００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
-      it 'priceが¥300~¥9,999,999の間以外の場合登録できない' do
-        @item.price = '100'
+      it 'priceが半角英数混合の場合登録できない' do
+        @item.price = 'abc123'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'priceが半角英字の場合登録できない' do
+        @item.price = 'abcdef'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'priceが¥300以下の場合登録できない' do
+        @item.price = 100
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'priceが¥9,999,999以上の場合登録できない' do
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
