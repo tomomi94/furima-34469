@@ -28,7 +28,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.update(item_params)
     if @item.update(item_params)
       redirect_to root_path
     else
@@ -48,8 +47,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
       redirect_to root_path
-    end
   end
 end
