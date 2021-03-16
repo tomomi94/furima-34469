@@ -9,7 +9,7 @@ class ShippingAddressPurchas
    validates :shipping_area_id, numericality: { other_than: 1 }
    validates :municipality
    validates :address
-   validates :phone_number, format: { with: ^\d{,11}$ }
+   validates :phone_number, format: { with: /^0\d{,10}$/ }
    validates :purchase_id
   end
 
