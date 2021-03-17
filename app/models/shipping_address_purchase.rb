@@ -1,4 +1,4 @@
-class ShippingAddressPurchas
+class ShippingAddressPurchase
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :post_code, :shipping_area_id, :municipality, :address, :building_name, :phone_number
 
