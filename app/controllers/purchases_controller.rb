@@ -5,11 +5,9 @@ class PurchasesController < ApplicationController
 
   def index
     @shipping_address_purchase = ShippingAddressPurchase.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @shipping_address_purchase = ShippingAddressPurchase.new(purchase_params)
     if @shipping_address_purchase.valid?
       pay_item
@@ -42,7 +40,7 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if current_user.id == @item.user_id || @item.purchase.present?
+    redirect_to root_path unless current_user.id == @item.user_id && @item.purchase.nil?
   end
 
 end
